@@ -63,7 +63,17 @@ Attribute::~Attribute () {}
 
 namespace {
 
-struct NameCompare: std::binary_function <const char *, const char *, bool>
+// FIXME: deprecated, this is just a makeshift impl. from Photon
+template<class Arg1, class Arg2, class Result> 
+struct binary_function
+{
+    using first_argument_type  = Arg1;
+    using second_argument_type = Arg2;
+    using result_type          = Result;
+};
+
+// FIXME: inheriting from deprecated class
+struct NameCompare: binary_function <const char *, const char *, bool>
 {
     bool
     operator () (const char *x, const char *y) const
